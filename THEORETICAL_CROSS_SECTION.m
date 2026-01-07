@@ -1,4 +1,4 @@
-weight=[.832358451254,.00136797200712,.166273576739];
+weight=[.832358451254,.00136797200712,.166273576739]; %replace with weights here - ORDER MATTERS
 FWHM=10;
 method='lorentzian';
 
@@ -71,10 +71,7 @@ else
 
 end
 xs(:,ii)=spec;
-%plot(x,weight(ii).*xs(:,ii)*100000/6.022e23); hold on
 
-%plot(x,weight(ii).*xs(:,ii)*100000/6.022e23) 
-%hold on
 Y=Y+weight(ii).*xs(:,ii);
 end
 Y=Y*100000/6.022e23;
@@ -87,7 +84,5 @@ end
 fclose(output_id);
 
 SPEC=[x',Y];
-% load BIS_305K.dat
-% plot(BIS_305K(:,1),BIS_305K(:,2))
-% hold off
+
 end

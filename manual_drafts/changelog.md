@@ -1,5 +1,10 @@
 # Document Changes
 
+## Version 3 - 010726
+-added the CAS number of molecule to title
+-got rid of !h appearing in Table II
+-added section VII about extracting data and using a new program to extract data from HITRAN
+
 ## Version 2 - 010526
 - removed IR_DATA_EXTRACT.m source code from document
 -provided GitHub repo link
