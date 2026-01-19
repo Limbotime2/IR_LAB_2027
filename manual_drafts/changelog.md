@@ -1,5 +1,10 @@
 # Document Changes
 
+## Version 5 - 011926
+-Organized sections into subsections in preparation for experimental data squisition
+-section III's (now subsection C) IR_DATA_EXTRACT.m gets an additional output of total enthalpy (or Gibbs free energies, if that is desired more)
+-added a WIP abstract
+
 ## Version 4 - 010926
 -added section VIII about callibrating data
 
