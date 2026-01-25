@@ -1,5 +1,13 @@
 # Document Changes
 
+## Version 6 - 013426
+-new and improved abstract written for general audience
+-updated Fig. 1 to show all conformers
+-added section "Calculating the Integrated Band Strength" including a preliminary value for the band strength
+-renamed section I (now section III) from "MATLAB Programs Workflow" to just "Programming Workflow" as I have included one Fortran source code and one Fortran module
+-after equation 10, edited "For a: " to be "For a and b: " for better grammatical consistency
+-categorized all data calculated from absorption cross section to its own section
+
 ## Version 5 - 011926
 -Organized sections into subsections in preparation for experimental data squisition
 -section III's (now subsection C) IR_DATA_EXTRACT.m gets an additional output of total enthalpy (or Gibbs free energies, if that is desired more)
