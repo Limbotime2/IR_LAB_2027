@@ -53,18 +53,27 @@ close(76)
 
 call spline3_coef(size(x),x,y,z)
 call MC_integral(size(x),maxval(x),minval(x),x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),567.0_dp,minval(x),x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),620.0_dp,567.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),697.0_dp,620.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),810.0_dp,697.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),930.0_dp,810.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),1010.0_dp,930.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),1256.0_dp,1010.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),1392.0_dp,1256.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),1600.0_dp,1392.0_dp,x,y,z,A,var)
+write(*,*) A,var
 call MC_integral(size(x),3060.0_dp,2940.0_dp,x,y,z,A,var)
 
-write(*,*) "integral calculated successfully"
 write(*,*) A,var
 
 !*****************************************************
