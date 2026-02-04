@@ -53,8 +53,27 @@ close(76)
 
 call spline3_coef(size(x),x,y,z)
 call MC_integral(size(x),maxval(x),minval(x),x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),567.0_dp,minval(x),x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),620.0_dp,567.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),697.0_dp,620.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),810.0_dp,697.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),930.0_dp,810.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),1010.0_dp,930.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),1256.0_dp,1010.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),1392.0_dp,1256.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),1600.0_dp,1392.0_dp,x,y,z,A,var)
+write(*,*) A,var
+call MC_integral(size(x),3060.0_dp,2940.0_dp,x,y,z,A,var)
 
-write(*,*) "integral calculated successfully"
 write(*,*) A,var
 
 !*****************************************************
@@ -79,7 +98,7 @@ contains
         summ=summ+f
         summ_squared=summ_squared+(f*f)
     end do
-    A=ux*(1./big_N)*summ
+    A=(ux-lx)*(1./big_N)*summ
     sigma_f=((1./big_N)*summ_squared)-(((1./big_N)*summ)**2.)
     var=((1./big_N)**3.)*sigma_f*(ux)**2.
     end subroutine
