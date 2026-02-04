@@ -98,7 +98,7 @@ contains
         summ=summ+f
         summ_squared=summ_squared+(f*f)
     end do
-    A=ux*(1./big_N)*summ
+    A=(ux-lx)*(1./big_N)*summ
     sigma_f=((1./big_N)*summ_squared)-(((1./big_N)*summ)**2.)
     var=((1./big_N)**3.)*sigma_f*(ux)**2.
     end subroutine

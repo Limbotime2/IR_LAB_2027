@@ -1,6 +1,12 @@
 # Document Changes
 
-## Version 6 - 013426
+## Version 7 - 020226
+-updated the date (month)
+-changed the positionings of figures 4 and 5
+-added Table IV
+-added workflow steps
+
+## Version 6 - 012426
 -new and improved abstract written for general audience
 -updated Fig. 1 to show all conformers
 -added section "Calculating the Integrated Band Strength" including a preliminary value for the band strength
