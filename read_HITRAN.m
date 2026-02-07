@@ -11,7 +11,8 @@ if strcmp('yes',yes_no)
 
     %open file
     selectdir=uigetdir(pwd,'Select directory containing HITRAN .xsc file');
-    cd(selectdir);
+    addpath(selectdir)
+    savepath
     filepattern=fullfile(selectdir,'*.xsc');
     [File]=uigetfile(filepattern,'Select HITRAN file');
     filename=char(File);
@@ -103,7 +104,8 @@ if strcmp('yes',yes_no)
 
     %write to output file
     selectdir=uigetdir(pwd,'Select directory to save output HITRAN_data.dat file');
-    cd(selectdir);
+    addpath(selectdir)
+    savepath
     output_id=fopen('HITRAN_data.dat','w');
     for i=1:length(x)
         fprintf(output_id,'%.4f\t%.6e\n',x(i),data(i));

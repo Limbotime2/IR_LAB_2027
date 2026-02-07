@@ -55,7 +55,8 @@ end
 
 Y=Y*100000/6.022e23;
 selectdir=uigetdir(pwd,'Select directory to save output theoretical_CS.dat file');
-cd(selectdir);
+addpath(selectdir)
+savepath
 output_id=fopen('theoretical_CS.dat','w');
 for i=1:length(x)
     fprintf(output_id,'%.4f\t%.6e\n', x(i), Y(i));

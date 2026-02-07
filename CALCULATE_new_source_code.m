@@ -82,7 +82,7 @@ read_HITRAN('yes'); %CHANGE TO 'NO' IF NOT COMPARING TO HITRAN DATA OR CROSS SEC
 selectdir=uigetdir(pwd,'IMPORTANT: select directory where THEORETICAL_CROSS_SECTION.m is saved');
 addpath(selectdir);
 addpath(genpath(selectdir));
-disp(selectdir)
+
 
 %calculate theoretical cross section using resolution
 FWHM=10; %change value if needed

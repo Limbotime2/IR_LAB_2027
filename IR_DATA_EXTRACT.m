@@ -21,7 +21,8 @@
 function [num_conf,energies,ir_data]=IR_DATA_EXTRACT()
 
 selectdir=uigetdir(pwd,'Select directory containing ORCA .out files');
-cd(selectdir);
+addpath(selectdir)
+savepath
 filepattern=fullfile(selectdir,'*.out');
 [File]=uigetfile('*.out','Select ORCA Output Files','MultiSelect','on');
 
@@ -33,7 +34,8 @@ ir_data=struct();
 
 %choose where to save output files
 selectdir=uigetdir(pwd,'Select directory to save output .dat files');
-cd(selectdir);
+addpath(selectdir)
+savepath
 
 for ii=1:length(File)
     filename=char(File(ii));
