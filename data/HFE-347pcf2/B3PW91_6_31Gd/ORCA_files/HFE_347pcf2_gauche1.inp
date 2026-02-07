@@ -1,7 +1,7 @@
 # avogadro generated ORCA input file 
 # Basic Mode
 # 
-! RHF OPT FREQ def2-SVP 
+! B3PW91 6-31G(d) OPT FREQ
 
 * xyz 0 1
    F        2.03360        0.95850       -1.19810
