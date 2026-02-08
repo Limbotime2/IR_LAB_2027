@@ -20,8 +20,8 @@
 %   The new parameters is also specified in the output file's comments.
 
 %input data
-x_orca=[3088.2;1464.4;1441.6;1166.6;1276.5;978.1];          %peaks from orca calculation, replace with wanted values
-x_hitr=[2999.2011;1436.4430;1418.0923;1144.6405;1256.1908;970.7764]; %peaks from hitran database, replace with wanted values
+x_orca=[3014,865,1321,992];          %peaks from orca calculation, replace with wanted values
+x_hitr=[3004,847,1289,970]; %peaks from hitran database, replace with wanted values
 
 %compare R^2 before calibration
 a_before=1;
@@ -44,7 +44,8 @@ b=x(2);
 
 %apply to data
 selectdir=uigetdir(pwd,'Select directory containing theoretical cross section file');
-cd(selectdir);
+addpath(selectdir)
+savepath
 filepattern=fullfile(selectdir,'*.dat');
 [File,path]=uigetfile(filepattern,'Select theoretical cross section file');
 filename=char(File);
