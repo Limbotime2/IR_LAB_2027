@@ -20,8 +20,8 @@
 %   The new parameters is also specified in the output file's comments.
 
 %input data
-x_orca=[3014,865,1321,992];          %peaks from orca calculation, replace with wanted values
-x_hitr=[3004,847,1289,970]; %peaks from hitran database, replace with wanted values
+x_orca=[1157.8, 1201.8, 1240.2, 1312.5];          %peaks from orca calculation, replace with wanted values
+x_hitr=[1144.64,1185.89,1220.63,1288.76]; %peaks from hitran database, replace with wanted values
 
 %compare R^2 before calibration
 a_before=1;
