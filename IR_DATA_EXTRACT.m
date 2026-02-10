@@ -47,8 +47,8 @@ for ii=1:length(File)
 
     %what to look for
     pattern1='IR SPECTRUM';
-    pattern2='Total Enthalpy'; %can change to look for Gibbs free energy if found reliable
-    %pattern2='Final Gibbs free energy';    %uncomment and comment the
+    %pattern2='Total Enthalpy'; %can change to look for Gibbs free energy if found reliable
+    pattern2='Final Gibbs free energy';    %uncomment and comment the
     %previous line if using Gibbs free energy
 
     %search for IR SPECTRUM and extract
