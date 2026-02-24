@@ -1,0 +1,59 @@
+clear all
+% Calculate the instantaneous or adjusted radiative efficiency from a cross-section spectrum
+% Author: K. Le Bris, modified by A. Limbo
+
+%Enter the cross-section spectrum  (first column: wavenumber in cm-1, second column: cross-section in cm^2/molecule) 
+temp = importdata('theoretical_CS_305_ent_CALIBRATED.dat');  % This automatically skips lines starting with #
+file1 = temp.data;  % Extract just the numeric data
+lifetime =6.1 % lifetime in years
+
+% Let's examine what we got
+disp('Structure of temp:')
+disp(temp)
+
+% Check if data field exists and is not empty
+if isfield(temp, 'data')
+    file1 = temp.data;
+    disp(['Size of file1: ', num2str(size(file1))])
+else
+    disp('No numeric data found! Showing first few lines of textdata:')
+    disp(temp.textdata(1:min(5, length(temp.textdata))))
+    error('Failed to load numeric data. Check file format.')
+end
+
+% Enter the instantaneous or adjusted Pinnock curve (first column: wavenumber in cm-1, second column: radiative forcing in mW m^-2 cm (per 10e-18 cm^2 per molecule) 
+Pinnock= load('NewPinnock.dat'); 
+
+x=file1(:,1);
+
+
+
+index=find(x>0);x=x(index);data =file1(:,2);
+xmin=round(min(x));
+xmax=round(max(x));
+if xmax>3000, xmax=3000; end;
+ 
+for i = xmin:xmax-1
+    xlow=i;
+    xhigh=i+1;
+    xi=find(x>xlow & x<xhigh);
+    v(i+1-xmin)=i+0.5;
+    
+        yj=mean(data(xi));
+     
+        y(i+1-xmin)=yj;
+     
+   
+end
+
+ind=find(Pinnock(:,1)>=xmin&Pinnock(:,1)<xmax);
+    RE=y'.*Pinnock(ind,2)*1E18/1000;
+    InsRE=trapz(v',RE) % instantaneous RE in W/m^2
+
+    % Calculation of the lifetime adjusted RE
+    a = 2.962; b = 0.9312; c = 2.994; d = 0.9302;% Empirical values from Hodnebrog 2020
+
+ Lifetime_adj= a*lifetime^b/(1+c*lifetime^d)
+ Adusted_RE =InsRE*Lifetime_adj
+   % Lifetime adjusted RE can be found if the lifetime is know
+
