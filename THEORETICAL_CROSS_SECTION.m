@@ -15,10 +15,11 @@
 % Original Author: KLB, modified by Aziell Paul S Limbo, original code is
 % available in Github repo
 
-function SPEC = THEORETICAL_CROSS_SECTION(num_conf,weight,FWHM,method,ir_data,ratio)
+function SPEC = THEORETICAL_CROSS_SECTION(num_conf,T,which_energy,weight,FWHM,method,ir_data,a,b,cal,ratio)
 
-if nargin<6
+if nargin==9
     ratio=0.5;
+    cal='no';
 end
 
 x = 0:0.1:3500;
@@ -26,13 +27,16 @@ xs=zeros(length(x),num_conf);Y=zeros(length(x),1);
 
 for ii=1:num_conf
 
-    Mydata=[ir_data(ii).wavenumber(:),ir_data(ii).intensity(:)]; size(Mydata);
+    Mydata=[ir_data(ii).wavenumber(:),ir_data(ii).intensity(:)];
 
     numpoints = max(size(Mydata(:,1)));
 
     HWHM=FWHM/2;
     sigma = (1/2.355)*FWHM;
     spec = 0;
+
+    % Calibration
+    Mydata(:,1)=Mydata(:,1)*a+b;
     
     if strcmp('gaussian',method)
         for n=1:numpoints
@@ -54,14 +58,28 @@ for ii=1:num_conf
 end
 
 Y=Y*100000/6.022e23;
-selectdir=uigetdir(pwd,'Select directory to save output theoretical_CS.dat file');
-addpath(selectdir)
-savepath
-output_id=fopen('theoretical_CS.dat','w');
-for i=1:length(x)
-    fprintf(output_id,'%.4f\t%.6e\n', x(i), Y(i));
+if strcmp('yes', cal)
+    % For calibrated files
+    filename = sprintf('theoretical_CS_%d_%s_CALIBRATED.dat', T, which_energy);
+    output_id = fopen(filename, 'w');
+    fprintf(output_id, '# Calibration parameters: %.4f\t%.4f\n', a, b);
+    
+    for i = 1:length(x)
+        fprintf(output_id, '%.4f\t%.6e\n', x(i), Y(i));
+    end
+    fclose(output_id);
+    
+elseif strcmp('no', cal)
+    % For uncalibrated files
+    filename = sprintf('theoretical_CS_%d_%s.dat', T, which_energy);
+    output_id = fopen(filename, 'w');
+    
+    for i = 1:length(x)
+        fprintf(output_id, '%.4f\t%.6e\n', x(i), Y(i));
+    end
+    fclose(output_id);
 end
-fclose(output_id);
+
 
 SPEC=[x',Y];
 

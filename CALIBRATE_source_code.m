@@ -20,8 +20,15 @@
 %   The new parameters is also specified in the output file's comments.
 
 %input data
-x_orca=[670.863, 864.47, 1144.51, 1185.54, 1221.26, 1288.43];          %peaks from orca calculation, replace with wanted values
-x_hitr=[659.388, 848.288, 1144.52, 1185.89, 1220.85, 1289.4]; %peaks from hitran database, replace with wanted values
+i=3; %Enter temperature index value
+which_energy='GFE'; %enter 'ent' or 'GFE' (case sensitive)
+x_orca=[653.9,864.5,992.7,1172.0,1212.7,1320.5,3103.8];          %wavenumber from orca calculation, replace with wanted values
+y_orca=[2.22778E-19,4.37473E-19,3.40579E-19,2.36852E-18,4.13429E-18,1.47657E-18,1.48655E-19];
+x_hitr=[659.388,847.746,970.566,1144.1,1185.29,1288.4,2990.07];          %wavenumber from hitran database, replace with wanted values
+y_hitr=[2.071E-19,3.006E-19,2.663E-19,2.96E-18,3.73E-18,1.089E-18,1.381E-19];
+
+%load previously saved variables from CALCULATE_new_source_code.m
+load("intermediary_variables.mat")
 
 %compare R^2 before calibration
 a_before=1;
@@ -43,11 +50,7 @@ a=x(1);
 b=x(2);
 
 %apply to data
-selectdir=uigetdir(pwd,'Select directory containing theoretical cross section file');
-addpath(selectdir)
-savepath
-filepattern=fullfile(selectdir,'*.dat');
-[File,path]=uigetfile(filepattern,'Select theoretical cross section file');
+[File,path]=uigetfile('*.dat','Select theoretical cross section file');
 filename=char(File);
 fid=fopen(filename,'r');
 data=textscan(fid,'%f %f');
@@ -55,6 +58,17 @@ fclose(fid);
 x_original=data{1};
 y=data{2};
 x_calibrated=a*x_original+b;
+AA=y_orca*FWHM;
+FWHM_opt=sum(AA.^2)/sum(AA.*y_hitr);
+
+disp(FWHM_opt);
+
+%recalculate theoretical cross section
+if strcmp('ent',which_energy)    
+    SPEC=THEORETICAL_CROSS_SECTION(num_conf,T(i),which_energy,pop_ent(:,i),FWHM_opt,'lorentzian',ir_data,a,b,'yes');
+else
+    SPEC=THEORETICAL_CROSS_SECTION(num_conf,T(i),which_energy,pop_GFE(:,i),FWHM_opt,'lorentzian',ir_data,a,b,'yes');
+end
 
 %calculate R^2
 y_pred=a*x_orca+b;
@@ -62,15 +76,3 @@ y_mean=mean(x_hitr);
 SST=sum((x_hitr-y_mean).^2);
 SSR=sum((x_hitr-y_pred).^2);
 R2=1-SSR/SST;
-
-%write out to data
-selectdir=uigetdir(pwd,'Select directory to save output theoretical_CS_CALIBRATED.dat file');
-cd(selectdir);
-output_id=fopen('theoretical_CS_CALIBRATED.dat','w');
-fprintf(output_id,'# Calibration parameters: %.4f\t%.4f\n',a,b);
-fprintf(output_id,'# R^2 before calibration: %.6f\n',R2_before);
-fprintf(output_id,'# R^2 after calibration : %.6f\n',R2);
-for i=1:length(x_calibrated)
-    fprintf(output_id,'%.4f\t%.6e\n', x_calibrated(i), y(i));
-end
-fclose(output_id);
