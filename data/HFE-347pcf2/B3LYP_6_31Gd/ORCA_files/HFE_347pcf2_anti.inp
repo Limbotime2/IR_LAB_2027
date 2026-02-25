@@ -2,6 +2,7 @@
 # Basic Mode
 # 
 ! B3LYP 6-31G(d) OPT FREQ 
+% FREQ TEMP 305, 320, 340 END
 
 * xyz 0 1
    F        1.28530       -1.62240        0.56030
