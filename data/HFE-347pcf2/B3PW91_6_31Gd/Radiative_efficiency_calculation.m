@@ -3,7 +3,7 @@ clear all
 % Author: K. Le Bris, modified by A. Limbo
 
 %Enter the cross-section spectrum  (first column: wavenumber in cm-1, second column: cross-section in cm^2/molecule) 
-fid = fopen('theoretical_CS_305_ent_CALIBRATED.dat');
+fid = fopen('theoretical_CS_340_GFE_CALIBRATED.dat');
 % Read two floating point numbers per line, skipping lines that start with #
 data = textscan(fid, '%f %f', 'CommentStyle', '#', 'CollectOutput', true);
 fclose(fid);
