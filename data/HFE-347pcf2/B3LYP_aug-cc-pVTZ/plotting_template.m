@@ -4,7 +4,7 @@ x1 = data1(:,1);  % First column as x
 y1 = data1(:,2);  % Second column as y
 
 % Read data from second .dat file
-data2 = readmatrix('theoretical_CS_340_GFE.dat');  % Replace 'file2.dat' with your second filename
+data2 = readmatrix('theoretical_CS_340_GFE_CALIBRATED.dat');  % Replace 'file2.dat' with your second filename
 x2 = data2(:,1);  % First column as x
 y2 = data2(:,2);  % Second column as y
 

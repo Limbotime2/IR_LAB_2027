@@ -22,8 +22,8 @@
 %input data
 i=3; %Enter temperature index value
 which_energy='GFE'; %enter 'ent' or 'GFE' (case sensitive)
-x_orca=[3067.9,584.1,649.9,774.7,844.6,973.4];          %wavenumber from orca calculation, replace with wanted values
-y_orca=[1.56929E-19,1.52907E-19,2.35496E-19,5.52324E-19,4.72583E-19,4.98936E-19];
+x_orca=[3067.8,581.8,646.9,771.3,840.3,969.5];          %wavenumber from orca calculation, replace with wanted values
+y_orca=[1.45277E-19,1.58687E-19,2.42836E-19,5.6213E-19,4.91047E-19,5.42776E-19];
 x_hitr=[2990.07,588.004,659.388,768.799,847.927,970.566];          %wavenumber from hitran database, replace with wanted values
 y_hitr=[1.381E-19,1.436E-19,2.071E-19,1.863E-19,3.021E-19,2.663E-19];
 

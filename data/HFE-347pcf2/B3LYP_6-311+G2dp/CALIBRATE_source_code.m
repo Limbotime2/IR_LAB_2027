@@ -20,12 +20,13 @@
 %   The new parameters is also specified in the output file's comments.
 
 %input data
-i=1; %Enter temperature index value
-which_energy='ent'; %enter 'ent' or 'GFE' (case sensitive)
-x_orca=[1133.0,1180.3,1288.6,3067.9,844.6,584.1,649.9,774.7,973.4];          %wavenumber from orca calculation, replace with wanted values
-y_orca=[2.45204E-18,3.45595E-18,1.26006E-18,1.56622E-19,4.70941E-19,1.52601E-19,2.3471E-19,5.50522E-19,4.98775E-19];
-x_hitr=[1144.5,1185.95,1289.13,2989.17,848.228,587.854,659.237,769.552,970.807];          %wavenumber from hitran database, replace with wanted values
-y_hitr=[3.066E-18,3.87E-18,1.11E-18,1.37E-19,3.228E-19,1.488E-19,2.157E-19,2.01E-19,2.829E-19];
+i=3; %Enter temperature index value
+which_energy='GFE'; %enter 'ent' or 'GFE' (case sensitive)
+x_orca=[3070.0,579.3,643.6,768.5,837.9,965.3];          %wavenumber from orca calculation, replace with wanted values
+y_orca=[1.3547E-19,1.57071E-19,2.33339E-19,5.62088E-19,5.36479E-19,5.47045E-19];
+x_hitr=[2990.07,588.004,659.388,768.799,847.927,970.566];          %wavenumber from hitran database, replace with wanted values
+y_hitr=[1.381E-19,1.436E-19,2.071E-19,1.863E-19,3.021E-19,2.663E-19];
+
 
 %load previously saved variables from CALCULATE_new_source_code.m
 load("intermediary_variables.mat")
