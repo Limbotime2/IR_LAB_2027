@@ -1,10 +1,13 @@
 clear all
 % Calculate the instantaneous or adjusted radiative efficiency from a cross-section spectrum
-% Author: K. Le Bris
-
+% Author: K. Le Bris, modified by A. Limbo
 %Enter the cross-section spectrum  (first column: wavenumber in cm-1, second column: cross-section in cm^2/molecule) 
-  file1 = load('BIS315_C.dat'); 
-lifetime =0.4 % lifetime in years
+fid = fopen('theoretical_CS_305_ent_CALIBRATED.dat');
+% Read two floating point numbers per line, skipping lines that start with #
+data = textscan(fid, '%f %f', 'CommentStyle', '#', 'CollectOutput', true);
+fclose(fid);
+file1 = data{1};  % Should be Nx2 matrix
+lifetime =6.1 % lifetime in years
 
 % Enter the instantaneous or adjusted Pinnock curve (first column: wavenumber in cm-1, second column: radiative forcing in mW m^-2 cm (per 10e-18 cm^2 per molecule) 
 Pinnock= load('NewPinnock.dat'); 
